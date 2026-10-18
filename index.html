@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087c45"><meta name="description" content="Probashi Jobs KSA - Saudi Arabia jobs for Bangladeshi expatriates">
+<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
+<title>প্রবাসী জবস KSA</title>
+</head>
+<body>
+<header class="top">
+  <div class="brandmark">PJ</div><div class="brand"><h1 data-i18n="appName">প্রবাসী জবস KSA</h1><p data-i18n="tagline">সৌদি আরবে চাকরি খুঁজুন</p></div>
+  <button id="langBtn" class="lang" aria-label="Change language">EN</button>
+</header>
+<nav class="tabs">
+  <button class="tab active" data-page="jobs" data-i18n="jobsTab">চাকরি</button>
+  <button class="tab" data-page="apply" data-i18n="applyTab">আবেদন</button>
+  <button class="tab" data-page="admin" data-i18n="adminTab">অ্যাডমিন</button>
+</nav>
+<main>
+<section id="jobsPage" class="page">
+  <div class="hero"><h2 data-i18n="heroTitle">আপনার পরবর্তী চাকরি খুঁজুন</h2><p data-i18n="heroText">চাকরির তথ্য যাচাই করে আবেদন করুন।</p></div>
+  <input id="search" class="search" placeholder="পদ, শহর বা কীওয়ার্ড খুঁজুন..." data-i18n-placeholder="searchPlaceholder">
+  <div id="jobsList" class="jobs"></div>
+  <p class="note" data-i18n="demoNote">ডেমো বিজ্ঞাপন—আবেদন করার আগে নিয়োগদাতার তথ্য যাচাই করুন।</p>
+</section>
+<section id="applyPage" class="page hidden">
+  <h2 data-i18n="applyTitle">চাকরির আবেদন</h2>
+  <p class="muted" data-i18n="applyIntro">ফর্ম পূরণ করুন। আপনার তথ্য এই ডেমো অ্যাপের এই ব্রাউজারেই সংরক্ষিত হবে।</p>
+  <form id="applicationForm" class="panel">
+    <label data-i18n="chooseJob">চাকরি নির্বাচন করুন</label><select id="applyJob" required></select>
+    <label data-i18n="fullName">পূর্ণ নাম</label><input id="applicantName" required maxlength="100">
+    <label data-i18n="phone">ফোন নম্বর / WhatsApp</label><input id="applicantPhone" required inputmode="tel" maxlength="30">
+    <label data-i18n="city">বর্তমান শহর</label><input id="applicantCity" required maxlength="80">
+    <label data-i18n="experience">অভিজ্ঞতা</label><select id="applicantExperience"><option value="0-1">০–১ বছর</option><option value="1-2">১–২ বছর</option><option value="3-5">৩–৫ বছর</option><option value="5+">৫ বছরের বেশি</option></select>
+    <label data-i18n="message">অতিরিক্ত তথ্য (ঐচ্ছিক)</label><textarea id="applicantMessage" rows="3" maxlength="1000"></textarea>
+    <label class="check"><input id="consent" type="checkbox" required><span data-i18n="consent">আমার তথ্য এই চাকরির আবেদনের জন্য ব্যবহার করা যাবে—আমি সম্মতি দিচ্ছি।</span></label>
+    <button class="primary" type="submit" data-i18n="submitApp">আবেদন জমা দিন</button><div id="applyStatus" role="status"></div>
+  </form>
+</section>
+<section id="adminPage" class="page hidden">
+  <h2 data-i18n="adminTitle">অ্যাডমিন প্যানেল</h2>
+  <div class="warning"><strong data-i18n="demoWarningTitle">ডেমো সীমাবদ্ধতা</strong><p data-i18n="demoWarning">এটি স্থানীয় প্রোটোটাইপ। এখানে পাসওয়ার্ড সুরক্ষা বা অনলাইন ডেটাবেস নেই। বাস্তব ব্যবহারের আগে Firebase/Supabase-এর মতো ব্যাকএন্ড যুক্ত করুন।</p></div>
+  <form id="adminLogin" class="panel">
+    <label data-i18n="demoPin">ডেমো অ্যাডমিন PIN (এই ডিভাইসে)</label><input id="adminPin" type="password" inputmode="numeric" placeholder="1234" required>
+    <button class="secondary" type="submit" data-i18n="adminLoginBtn">অ্যাডমিন খুলুন</button><p class="muted small" data-i18n="demoPinHint">শুধু ডেমোর জন্য PIN: 1234। এটি নিরাপদ লগইন নয়।</p>
+  </form>
+  <div id="adminTools" class="hidden">
+    <h3 data-i18n="addJobTitle">নতুন চাকরি যোগ করুন</h3>
+    <form id="jobForm" class="panel">
+      <label data-i18n="jobTitle">চাকরির পদ</label><input id="jobTitle" required maxlength="120">
+      <label data-i18n="jobCity">শহর</label><input id="jobCity" required maxlength="80">
+      <label data-i18n="jobSalary">বেতন (ঐচ্ছিক)</label><input id="jobSalary" maxlength="80">
+      <label data-i18n="jobType">চাকরির ধরন</label><select id="jobType"><option>Full-time</option><option>Contract</option><option>Temporary</option></select>
+      <label data-i18n="jobDescription">বিবরণ ও যোগ্যতা</label><textarea id="jobDescription" rows="4" required maxlength="3000"></textarea>
+      <label data-i18n="employerContact">নিয়োগদাতার যোগাযোগ (ঐচ্ছিক)</label><input id="employerContact" maxlength="100">
+      <label class="check"><input id="verified" type="checkbox"><span data-i18n="verifiedCheck">নিয়োগদাতা/বিজ্ঞাপন যাচাই করা হয়েছে</span></label>
+      <button class="primary" type="submit" data-i18n="publishJob">চাকরি প্রকাশ করুন</button>
+    </form>
+    <div class="admin-row"><h3 data-i18n="manageJobs">চাকরি পরিচালনা</h3><button id="exportBtn" class="secondary" data-i18n="exportData">ডেটা ডাউনলোড</button></div>
+    <div id="adminJobs"></div>
+    <h3 data-i18n="receivedApps">আবেদনসমূহ</h3><div id="applicationsList"></div>
+    <button id="clearApps" class="danger" data-i18n="clearApps">সব আবেদন মুছুন</button>
+  </div>
+</section>
+</main>
+<footer><span>© <span id="year"></span> Probashi Jobs KSA</span><span data-i18n="footerNote">চাকরির তথ্য যাচাই করে আবেদন করুন।</span></footer>
+<script src="app.js"></script>
+</body></html>
